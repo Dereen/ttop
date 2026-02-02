@@ -92,6 +92,12 @@ def build_data_matrix(training_data: List[Tuple]) -> Tuple[List[str], List[List[
         run_remaining = run_estimates.get("remaining")
         run_total = run_estimates.get("total")
 
+        # Override timing for finished runs
+        if status in ("FINISHED", "KILLED", "FAILED"):
+            run_elapsed = total_elapsed
+            run_remaining = 0
+            run_total = total_elapsed
+
         # Epoch timing
         epoch_elapsed = epoch_estimates.get("elapsed")
         epoch_remaining = epoch_estimates.get("remaining")

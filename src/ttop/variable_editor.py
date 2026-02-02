@@ -169,7 +169,7 @@ def format_training_stats(file_data: dict) -> Dict[str, any]:
         "status_info": {
             "Status": file_data.get("status", "UNKNOWN"),
             "Phase": state.get("phase", "N/A"),
-            "Epoch": f"{state.get('epoch', 0)}/{state.get('total_epochs', 0)}",
+            "Epoch": f"{state.get('epoch', 0) + 1}/{state.get('total_epochs', 0)}",
             "Batch": f"{state.get('batch', 0)}/{state.get('total_batches', 0)}",
         },
         "run_timing": {

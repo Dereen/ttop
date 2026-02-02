@@ -107,7 +107,7 @@ def build_data_matrix(training_data: List[Tuple]) -> Tuple[List[str], List[List[
         validation_remaining = validation_estimates.get("remaining")
         validation_total = validation_estimates.get("total")
 
-        epoch_str = f"{epoch}/{total_epochs}" if total_epochs > 0 else str(epoch)
+        epoch_str = f"{epoch + 1}/{total_epochs}" if total_epochs > 0 else str(epoch + 1)
         batch_str = f"{batch}/{total_batches}" if total_batches > 0 else str(batch)
 
         if resources:

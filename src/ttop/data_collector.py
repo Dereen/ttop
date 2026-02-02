@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 from typing import Dict, List, Optional
 
-from rci.ttop.utils import natural_sort_key
+from ttop.utils import natural_sort_key
 
 
 def read_training_file(file_path: Path) -> Optional[Dict]:

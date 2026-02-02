@@ -415,7 +415,7 @@ The tool consists of:
 ## Known Issues & TODO
 
 - [ ] Wandb URL doesn't work
-- [ ] Include RAM, CPU, GPU resources (per process, all threads) into progress.json
+- [ ] Include RAM, CPU, GPU resources (per process, all threads) into progress.json in TrainingMonitor
 - [ ] Hide/show stdout/stderr output in editor and output viewer
 - [ ] Rewrite ttop to use tmux tabs and panes
 - [ ] Editor doesn't refresh PID and hardware resources are unavailable until exiting editor and returning

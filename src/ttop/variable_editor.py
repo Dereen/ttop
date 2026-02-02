@@ -11,11 +11,11 @@ from typing import Dict, Any, Optional, List
 from dataclasses import dataclass
 from enum import Enum
 
-from rci.ttop.color_scheme import ColorScheme
-from rci.ttop.time_utils import format_duration
-from rci.ttop.output_viewer import get_output_files_from_metadata, tail_both_files, print_ansi_colored_line
-from rci.ttop.cpu_resources import get_process_tree_resources, get_user_cpu_ram_stats
-from rci.ttop.gpu_resources import get_gpu_stats_for_pids
+from ttop.color_scheme import ColorScheme
+from ttop.time_utils import format_duration
+from ttop.output_viewer import get_output_files_from_metadata, tail_both_files, print_ansi_colored_line
+from ttop.cpu_resources import get_process_tree_resources, get_user_cpu_ram_stats
+from ttop.gpu_resources import get_gpu_stats_for_pids
 from collections import deque
 
 
@@ -96,8 +96,8 @@ def get_process_resources(pid: int) -> Optional[Dict]:
     if not pid:
         return None
 
-    from rci.ttop.cpu_resources import get_process_tree
-    from rci.ttop.gpu_resources import get_gpu_usage_for_pids
+    from ttop.cpu_resources import get_process_tree
+    from ttop.gpu_resources import get_gpu_usage_for_pids
 
     tree_resources = get_process_tree_resources(pid)
     if tree_resources is None:
@@ -566,11 +566,12 @@ def show_variable_editor(stdscr, training_folder: Path, file_data: dict):
     resources = None
     overall_resources = None
 
-    # Fetch resources immediately on startup (don't wait for 0.5s interval)
+    # Fetch resources immediately on editor open
     if pid:
         try:
             resources = get_process_resources(pid)
             overall_resources = get_overall_resources()
+            last_resources_update = time.time()
         except Exception:
             pass
 

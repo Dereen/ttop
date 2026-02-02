@@ -6,7 +6,7 @@ CPU resource monitoring utilities.
 import psutil
 from typing import List, Dict, Optional
 
-from rci.ttop.utils import MemoryInfo
+from ttop.utils import MemoryInfo
 
 
 def get_process_tree(pid: int) -> List[int]:
@@ -78,8 +78,8 @@ def get_process_info(pid: int) -> Optional[Dict]:
         Dictionary with process information or None if process doesn't exist
     """
     try:
-        from rci.ttop.gpu_resources import get_gpu_usage_for_pid
-        from rci.ttop.utils import mib_to_gb
+        from ttop.gpu_resources import get_gpu_usage_for_pid
+        from ttop.utils import mib_to_gb
 
         proc = psutil.Process(pid)
         cpu_percent = proc.cpu_percent(interval=None)

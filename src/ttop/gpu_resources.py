@@ -6,7 +6,7 @@ GPU resource monitoring utilities.
 import subprocess
 from typing import Dict
 
-from rci.ttop.utils import mib_to_gb
+from ttop.utils import mib_to_gb
 
 
 def get_total_gpu_memory() -> int:

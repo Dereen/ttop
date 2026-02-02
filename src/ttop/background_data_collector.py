@@ -11,10 +11,10 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Optional, Tuple
 
-from rci.ttop.gpu_resources import get_gpu_usage_for_pids, get_gpu_stats_for_pids
-from rci.ttop.cpu_resources import get_process_tree, get_user_cpu_ram_stats, get_process_tree_resources
-from rci.ttop.csv_writer import MatrixCSVWriter
-from rci.ttop.data_formatting import build_data_matrix, calculate_column_widths_from_matrix
+from ttop.gpu_resources import get_gpu_usage_for_pids, get_gpu_stats_for_pids
+from ttop.cpu_resources import get_process_tree, get_user_cpu_ram_stats, get_process_tree_resources
+from ttop.csv_writer import MatrixCSVWriter
+from ttop.data_formatting import build_data_matrix, calculate_column_widths_from_matrix
 
 
 class BackgroundDataCollector(threading.Thread):
@@ -46,7 +46,7 @@ class BackgroundDataCollector(threading.Thread):
 
     def run(self):
         import psutil
-        from rci.ttop.utils import natural_sort_key
+        from ttop.utils import natural_sort_key
 
         for proc in psutil.process_iter(['pid']):
             try:

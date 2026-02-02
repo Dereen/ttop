@@ -26,12 +26,12 @@ from datetime import datetime
 from typing import Dict, List, Optional, Tuple
 import queue
 
-from rci.ttop.time_utils import format_duration, format_short_duration
-from rci.ttop.background_data_collector import BackgroundDataCollector
-from rci.ttop.data_formatting import build_data_matrix, calculate_column_widths_from_matrix
-from rci.ttop.color_scheme import ColorScheme
-from rci.ttop.output_viewer import show_output_window, get_output_files_from_metadata
-from rci.ttop.variable_editor import show_variable_editor
+from ttop.time_utils import format_duration, format_short_duration
+from ttop.background_data_collector import BackgroundDataCollector
+from ttop.data_formatting import build_data_matrix, calculate_column_widths_from_matrix
+from ttop.color_scheme import ColorScheme
+from ttop.output_viewer import show_output_window, get_output_files_from_metadata
+from ttop.variable_editor import show_variable_editor
 from dataclasses import dataclass
 from enum import Enum
 

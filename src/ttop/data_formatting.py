@@ -5,12 +5,12 @@ Handles building data matrices and calculating column widths.
 """
 
 import time
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Tuple
 
-from rci.ttop.time_utils import format_duration, format_short_duration
+from ttop.time_utils import format_duration, format_short_duration
 
 
-def format_wandb_url(url) -> str:
+def format_wandb_url(url: Optional[str]) -> str:
     """Format wandb URL with protocol prefix.
 
     Args:
@@ -19,7 +19,7 @@ def format_wandb_url(url) -> str:
     Returns:
         Formatted URL with https:// prefix, or "N/A" if invalid
     """
-    if not url or not str(url).strip() or str(url).strip() in ("Invalid", "N/A"):
+    if not url or not str(url).strip() or url == "Invalid":
         return "N/A"
     url = str(url).strip()
     if not url.startswith(('http://', 'https://')):
@@ -58,6 +58,13 @@ def build_data_matrix(training_data: List[Tuple]) -> Tuple[List[str], List[List[
         wandb_run_name = metadata.get("wandb_run_name") or json_file.stem
         wandb_url = format_wandb_url(metadata.get("wandb_url"))
         phase = str(state.get("phase", "Invalid"))
+
+        # Extract metrics
+        metrics = data.get("metrics", {})
+        loss = metrics.get("loss")
+        loss_str = f"{loss:.4f}" if loss is not None else "N/A"
+        lr = metrics.get("learning_rate")
+        lr_str = f"{lr:.6f}" if lr is not None else "N/A"
         epoch = state.get("epoch", 0)
         total_epochs = state.get("total_epochs", 0)
         batch = state.get("batch", 0)
@@ -102,13 +109,6 @@ def build_data_matrix(training_data: List[Tuple]) -> Tuple[List[str], List[List[
 
         epoch_str = f"{epoch}/{total_epochs}" if total_epochs > 0 else str(epoch)
         batch_str = f"{batch}/{total_batches}" if total_batches > 0 else str(batch)
-
-        # Extract metrics
-        metrics = data.get("metrics", {})
-        loss = metrics.get("loss")
-        loss_str = f"{loss:.4f}" if loss is not None else "N/A"
-        lr = metrics.get("learning_rate")
-        lr_str = f"{lr:.6f}" if lr is not None else "N/A"
 
         if resources:
             procs_str = str(resources['processes'])

@@ -11,7 +11,7 @@ from datetime import datetime
 from typing import Dict, List, Optional, Tuple
 from collections import deque
 
-from rci.ttop.color_scheme import ColorScheme
+from ttop.color_scheme import ColorScheme
 
 
 ANSI_COLOR_PATTERN = re.compile(r'\033\[([0-9;]+)m')

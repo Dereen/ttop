@@ -14,7 +14,7 @@ from .async_file_writer import AsyncFileWriter
 
 
 class TrainingMonitor:
-    def __init__(self, output_file: str, wandb_run_name: Optional[str] = None):
+    def __init__(self, output_file: str, wandb_run_name: Optional[str] = None, wandb_url: Optional[str] = None):
         self.wandb_run_name = wandb_run_name
 
         # Create folder structure: output_file is now a folder path
@@ -69,6 +69,7 @@ class TrainingMonitor:
             "python_version": sys.version,
             "start_time": time.time(),
             "wandb_run_name": wandb_run_name,
+            "wandb_url": wandb_url,
             "stdout_path": stdout_path,
             "stderr_path": stderr_path
         }

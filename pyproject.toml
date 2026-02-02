@@ -31,6 +31,7 @@ classifiers = [
 ]
 dependencies = [
     "psutil>=5.9.0",
+    "portalocker>=2.0.0",
 ]
 
 [project.optional-dependencies]
